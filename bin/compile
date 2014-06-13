@@ -12,7 +12,10 @@ apt-get -y update
 apt-get -y install nodejs npm
 apt-get -y install nginx-light
 
+cd $build_dir
 npm install
+grunt
+cd -
 
 echo "       Nginx installed"
 
@@ -34,7 +37,7 @@ http {
     server {
         listen 5000;
         location / {
-            root "/app/";
+            root "/app/httpdocs/dev";
             autoindex on;
             index index.html index.htm;
         }
