@@ -13,9 +13,9 @@ apt-get -y install nodejs npm
 apt-get -y install nginx-light
 
 cd $build_dir
-npm install
-grunt
-cd -
+npm install 
+# grunt
+# cd -
 
 echo "       Nginx installed"
 
