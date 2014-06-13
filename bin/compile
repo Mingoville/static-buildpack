@@ -8,15 +8,16 @@ set -e
 
 echo "-----> Installing nginx-light with apt-get"
 
+add-apt-repository ppa:chris-lea/node.js
 apt-get -y update
-apt-get -y install nodejs npm
-apt-get -y install nginx-light
+apt-get -y install nodejs
 
 cd $build_dir
 npm install || cat /build/app/npm-debug.log
-# grunt
-# cd -
+grunt
+cd -
 
+apt-get -y install nginx-light
 echo "       Nginx installed"
 
 echo "-----> Adding Nginx config"
