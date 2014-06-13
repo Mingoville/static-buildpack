@@ -13,7 +13,7 @@ apt-get -y install nodejs npm
 apt-get -y install nginx-light
 
 cd $build_dir
-npm install 
+npm install || cat /build/app/npm-debug.log
 # grunt
 # cd -
 
