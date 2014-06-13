@@ -9,7 +9,10 @@ set -e
 echo "-----> Installing nginx-light with apt-get"
 
 apt-get -y update
+apt-get -y install nodejs
 apt-get -y install nginx-light
+
+npm install
 
 echo "       Nginx installed"
 
