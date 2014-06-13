@@ -7,7 +7,7 @@ cache_dir=$2
 set -e
 
 echo "-----> Installing nginx-light with apt-get"
-
+apt-get install software-properties-common python-software-properties
 add-apt-repository ppa:chris-lea/node.js
 apt-get -y update
 apt-get -y install nodejs
