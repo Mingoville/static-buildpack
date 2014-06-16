@@ -14,11 +14,11 @@ wget -qO - "http://keyserver.ubuntu.com:11371/pks/lookup?op=get&search=0xB9316A7
 apt-get -y update
 apt-get -y install nodejs
 
-cd $build_dir
-npm install -g grunt
-npm install || cat /build/app/npm-debug.log
-$build_dir/node_modules/grunt/bin/grunt || ls -R $build_dir
-cd -
+# cd $build_dir
+# npm install -g grunt
+# npm install || cat /build/app/npm-debug.log
+# $build_dir/node_modules/grunt/bin/grunt || ls -R $build_dir
+# cd -
 
 apt-get -y install nginx-light
 echo "       Nginx installed"
