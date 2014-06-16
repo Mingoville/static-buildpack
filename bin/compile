@@ -19,17 +19,17 @@ apt-get -y install nodejs
 if test -d $build_dir/node_modules; then
   status "Found existing node_modules directory; skipping cache"
   status "Rebuilding any native dependencies"
-  npm rebuild 2>&1 | indent
+  npm rebuild 2>&1
 elif test -d $cache_dir/node/node_modules; then
   status "Restoring node_modules directory from cache"
   cp -r $cache_dir/node/node_modules $build_dir/
 
   status "Pruning cached dependencies not specified in package.json"
-  npm prune 2>&1 | indent
+  npm prune 2>&1
 fi
 
 cd $build_dir
-npm install 2>&1 | indent 
+npm install 2>&1
 
 rm -rf $cache_dir/node
 mkdir -p $cache_dir/node
