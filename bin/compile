@@ -14,8 +14,32 @@ wget -qO - "http://keyserver.ubuntu.com:11371/pks/lookup?op=get&search=0xB9316A7
 apt-get -y update
 apt-get -y install nodejs
 
+# If node_modules directory is checked into source control then
+# rebuild any native deps. Otherwise, restore from the build cache.
+if test -d $build_dir/node_modules; then
+  status "Found existing node_modules directory; skipping cache"
+  status "Rebuilding any native dependencies"
+  npm rebuild 2>&1 | indent
+elif test -d $cache_dir/node/node_modules; then
+  status "Restoring node_modules directory from cache"
+  cp -r $cache_dir/node/node_modules $build_dir/
+
+  status "Pruning cached dependencies not specified in package.json"
+  npm prune 2>&1 | indent
+fi
+
 cd $build_dir
-npm install
+npm install 2>&1 | indent 
+
+rm -rf $cache_dir/node
+mkdir -p $cache_dir/node
+
+# If app has a node_modules directory, cache it.
+if test -d $build_dir/node_modules; then
+  status "Caching node_modules directory for future builds"
+  cp -r $build_dir/node_modules $cache_dir/node
+fi
+
 node_modules/.bin/grunt
 cd -
 
