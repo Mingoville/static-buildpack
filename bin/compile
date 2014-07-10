@@ -64,9 +64,6 @@ http {
 
     server {
         listen 5000;
-        
-        rewrite ^/q/(.*)$ /#quiz/qrf=$1 last
-        rewrite ^/(.*)$ /#list/cid=$1 last
 
         location / {
             root "/app/httpdocs/dev";
