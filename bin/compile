@@ -53,9 +53,11 @@ echo "-----> Adding Nginx config"
 echo $build_dir
 ls -la $build_dir
 
-if test -f $build_dir/dokku_nginx.conf; then
+if test -f $build_dir/dokku-nginx.conf; then
   echo "-----> nginx config from Git"
-  cat $build_dir/dokku_nginx.conf > $build_dir/.nginx.conf;
+  cat $build_dir/dokku-nginx.conf > $build_dir/.nginx.conf;
+else
+  echo "-----> nginx config missing"
 fi
 
 
