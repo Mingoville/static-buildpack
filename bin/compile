@@ -50,40 +50,7 @@ echo "       Nginx installed"
 
 echo "-----> Adding Nginx config"
 
-cat > $build_dir/.nginx.conf <<STUFF
-daemon off;
-error_log stderr notice;
-worker_processes 1;
-
-events {
-    worker_connections 1024;
-}
-http {
-    include /etc/nginx/mime.types;
-    default_type application/octet-stream;
-    access_log /dev/stdout;
-    rewrite_log on;
-
-    server {
-        listen 5000;
-
-        location / {
-            root "/app/httpdocs/dev";
-            autoindex on;
-            index index.html index.htm;
-            
-            rewrite ^/q/js/(.*)$ /js/\$1 break;
-            rewrite ^/q/css/(.*)$ /css/\$1 break;
-            rewrite ^/q/(.*)$ /index.html break;
-            
-            rewrite ^/js/(.*)$ /js/\$1 break;
-            rewrite ^/css/(.*)$ /css/\$1 break;
-            rewrite ^/(.*)$ /index.html break;
-        }
-        
-    }
-}
-STUFF
+cat $build_dir/dokku_nginx.conf > $build_dir/.nginx.conf 
 
 
 
