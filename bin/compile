@@ -50,7 +50,11 @@ echo "       Nginx installed"
 
 echo "-----> Adding Nginx config"
 
-cat $build_dir/dokku_nginx.conf > $build_dir/.nginx.conf 
+if test -f $build_dir/dokku_nginx.conf; then
+  cat $build_dir/dokku_nginx.conf > $build_dir/.nginx.conf
+else
+  ls -la $build_dir
+fi
 
 
 
