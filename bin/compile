@@ -72,12 +72,12 @@ http {
             autoindex on;
             index index.html index.htm;
             
-            rewrite ^/q/js/(.*)$ /js/$1 break;
-            rewrite ^/q/css/(.*)$ /css/$1 break;
+            rewrite ^/q/js/(.*)$ /js/\$1 break;
+            rewrite ^/q/css/(.*)$ /css/\$1 break;
             rewrite ^/q/(.*)$ /index.html break;
             
-            rewrite ^/js/(.*)$ /js/$1 break;
-            rewrite ^/css/(.*)$ /css/$1 break;
+            rewrite ^/js/(.*)$ /js/\$1 break;
+            rewrite ^/css/(.*)$ /css/\$1 break;
             rewrite ^/(.*)$ /index.html break;
         }
         
