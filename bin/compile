@@ -52,7 +52,7 @@ echo "-----> Adding Nginx config"
 
 cat > $build_dir/.nginx.conf <<STUFF
 daemon off;
-error_log stderr;
+error_log stderr notice;
 worker_processes 1;
 
 events {
@@ -62,6 +62,7 @@ http {
     include /etc/nginx/mime.types;
     default_type application/octet-stream;
     access_log /dev/stdout;
+    rewrite_log on;
 
     server {
         listen 5000;
