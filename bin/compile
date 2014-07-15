@@ -12,7 +12,7 @@ echo "-----> Installing nginx-light with apt-get"
 #echo "deb http://ppa.launchpad.net/chris-lea/node.js/ubuntu quantal main" >> /etc/apt/sources.list
 #wget -qO - "http://keyserver.ubuntu.com:11371/pks/lookup?op=get&search=0xB9316A7BC7917B12"|sudo apt-key add -
 apt-get -y update
-apt-get -y install nodejs npm
+apt-get -y install nodejs nodejs-legacy npm
 
 
 cd $build_dir
