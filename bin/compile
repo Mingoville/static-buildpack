@@ -54,7 +54,32 @@ if test -f $build_dir/dokku-nginx.conf; then
   echo "-----> nginx config from Git"
   cat $build_dir/dokku-nginx.conf > $build_dir/.nginx.conf;
 else
-  echo "-----> nginx config missing"
+  echo "-----> default nginx config"
+  cat > $build_dir/.nginx.conf <<STUFF
+daemon off;
+error_log stderr;
+worker_processes 1;
+
+events {
+    worker_connections 1024;
+}
+http {
+    include /etc/nginx/mime.types;
+    default_type application/octet-stream;
+    access_log /dev/stdout;
+
+    server {
+        listen 5000;
+
+        location / {
+            root "/app/httpdocs/dev";
+            autoindex on;
+            index index.html index.htm;
+        }
+        
+    }
+}
+STUFF
 fi
 
 
